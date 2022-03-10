@@ -7,10 +7,11 @@ const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSW
 // *** Connected to MongoDB atlas *** //
 mongoose.connect(DB, {
     useNewUrlParser: true,
-    useFindAndModify: false
-}).then(() => console.log("Database is connected successfully")).catch(err => {
+    useFindAndModify: false,
+    useUnifiedTopology: true
+}).then(() => console.log("Database is connected successfully")).catch((err) => {
     console.log(err);
-});
+})
 
 // **** Connected to mongodb compass or local localhost://27017 ***
 // mongoose.connect(process.env.DATABASE_LOCAL, {
@@ -20,6 +21,15 @@ mongoose.connect(DB, {
 
 
 const port = process.env.PORT || 8000;
-app.listen(port, '127.0.0.1', () => {
+const server = app.listen(port, '127.0.0.1', () => {
     console.log(`App is running on port ${port}...`);
 })
+
+// process.on('UnhandledRejection', err => {
+//     console.log(err);
+//     console.log('Unhandled Rejection ??');
+//     server.close(() => {
+//         process.exit(1);
+//     });
+// })
+
