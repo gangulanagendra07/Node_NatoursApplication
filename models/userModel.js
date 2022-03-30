@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const validator = require('validator');
 
+// Password for all users "test1234"
 // Name, Email, Photo, Password, Confirm Password
 const userSchema = mongoose.Schema({
 
